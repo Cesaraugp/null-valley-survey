@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+//import { ChakraProvider } from "@chakra-ui/react";
+import { surveyContext } from "./store";
 
-function App() {
+export default function App() {
+  //console.log(surveyContext);
+  const context = useContext(surveyContext);
+  console.log(context);
+  //console.log(context);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Switch>
+          <Route path="/results">
+            <Results />
+          </Route>
+          <Route path="/users">
+            <Users />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
-export default App;
+function Home() {
+  return <h2>Home</h2>;
+}
+
+function Results() {
+  return <h2>Resultss</h2>;
+}
+
+function Users() {
+  return <h2>Users</h2>;
+}
